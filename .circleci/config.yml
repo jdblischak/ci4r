@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  check:
+  build:
     docker:
       - image: rocker/verse:3.5.3
     steps:
