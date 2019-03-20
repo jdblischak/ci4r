@@ -1,3 +1,4 @@
+^\.circleci$
 ^appveyor\.yml$
 ^\.travis\.yml$
 ^ci4r\.Rproj$
