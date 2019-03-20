@@ -13,7 +13,7 @@ jobs:
           command: R CMD build .
       - run:
           name: Check package
-          command: R CMD check *tar.gz
+          command: R CMD check -o Rcheck *tar.gz
       - store_artifacts:
-          path: *.Rcheck/
+          path: Rcheck/
 
