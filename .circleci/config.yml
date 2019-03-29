@@ -4,6 +4,9 @@ jobs:
     docker:
       - image: rocker/verse:3.5.3
     steps:
+      - restore_cache:
+          keys:
+            - cache
       - checkout
       - run:
           name: Install package dependencies
@@ -16,4 +19,7 @@ jobs:
           command: R CMD check *tar.gz
       - store_artifacts:
           path: ci4r.Rcheck/
-
+      - save_cache:
+          key: cache
+          paths:
+            - "/usr/local/lib/R/site-library"

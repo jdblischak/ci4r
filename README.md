@@ -7,4 +7,3 @@
 An example repository to demonstrate continuous integration (CI) testing for R.
 After every commit, the R package is built and checked on Travis CI (Linux,
 macOS), AppVeyor (Windows), and CircleCI (Linux).
-
