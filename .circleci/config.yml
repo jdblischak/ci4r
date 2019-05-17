@@ -12,6 +12,12 @@ jobs:
           name: Install package dependencies
           command: R -e "devtools::install_deps(dep = TRUE)"
       - run:
+          name: Session information and installed package versions
+          command: |
+            Rscript -e 'sessionInfo()'
+            Rscript -e 'installed.packages()[, c("Package", "Version")]'
+            Rscript -e 'rmarkdown::pandoc_version()'
+      - run:
           name: Build package
           command: R CMD build .
       - run:
