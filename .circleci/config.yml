@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: rocker/verse:3.5.3
     environment:
-      R_LIBS_USER: ~/R/Library
+      R_LIBS_USER: ${HOME}/R/Library
     steps:
       - restore_cache:
           keys:
@@ -13,7 +13,8 @@ jobs:
       - run:
           name: Install package dependencies
           command: |
-            mkdir -p $R_LIBS_USER
+            mkdir -p ${HOME}/R/Library
+            R -e 'Sys.getenv("R_LIBS_USER")'
             R -e '.libPaths()'
             R -e 'install.packages("remotes")'
             R -e 'remotes::install_deps(dependencies = TRUE)'
