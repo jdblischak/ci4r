@@ -8,13 +8,14 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - cache
+            - r-pkg-cache-{{ arch }}-{{ .Branch }}
+            - r-pkg-cache-{{ arch }}-
       - checkout
       - run:
           name: Install package dependencies
           command: |
             mkdir -p ~/R/Library
-            Rscript -e 'Sys.getenv("R_LIBS_USER")'
+            Rscript -e 'Sys.getenv("R_LIBS")'
             Rscript -e '.libPaths()'
             Rscript -e 'install.packages("remotes")'
             Rscript -e 'remotes::install_deps(dependencies = TRUE)'
@@ -33,6 +34,6 @@ jobs:
       - store_artifacts:
           path: ci4r.Rcheck/
       - save_cache:
-          key: cache
+          key: r-pkg-cache-{{ arch }}-{{ .Branch }}
           paths:
             - "~/R/Library"
