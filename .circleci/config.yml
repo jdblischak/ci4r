@@ -2,9 +2,9 @@ version: 2
 jobs:
   build:
     docker:
-      - image: rocker/verse:3.5.3
+      - image: rocker/verse:latest
     environment:
-      R_LIBS_USER: ${HOME}/R/Library
+      R_LIBS: ~/R/Library
     steps:
       - restore_cache:
           keys:
@@ -13,11 +13,11 @@ jobs:
       - run:
           name: Install package dependencies
           command: |
-            mkdir -p ${HOME}/R/Library
-            R -e 'Sys.getenv("R_LIBS_USER")'
-            R -e '.libPaths()'
-            R -e 'install.packages("remotes")'
-            R -e 'remotes::install_deps(dependencies = TRUE)'
+            mkdir -p ~/R/Library
+            Rscript -e 'Sys.getenv("R_LIBS_USER")'
+            Rscript -e '.libPaths()'
+            Rscript -e 'install.packages("remotes")'
+            Rscript -e 'remotes::install_deps(dependencies = TRUE)'
       - run:
           name: Session information and installed package versions
           command: |
