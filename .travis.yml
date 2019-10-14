@@ -8,7 +8,7 @@ matrix:
   include:
     - os: linux
       r: oldrel
-      cran: https://mran.microsoft.com/snapshot/2017-10-22
+      cran: https://mran.microsoft.com/snapshot/2017-10-23
     - os: linux
       r: release
     - os: linux
